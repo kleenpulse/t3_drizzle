@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import { cn } from "~/lib/utils";
 import LenisProvider from "~/components/LenisProvider";
 import TopNav from "~/components/navigation/TopNav";
+import { Suspense } from "react";
+import LoadingScreen from "~/components/welcome/LoadingScreen";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,7 +34,7 @@ export default function RootLayout({
           )}
         >
           <TopNav />
-          {children}
+          <Suspense fallback={<LoadingScreen />}>{children}</Suspense>
         </body>
       </LenisProvider>
     </html>
