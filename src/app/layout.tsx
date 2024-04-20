@@ -1,10 +1,14 @@
 import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
+import { cn } from "~/lib/utils";
+import LenisProvider from "~/components/LenisProvider";
+import TopNav from "~/components/navigation/TopNav";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata = {
@@ -20,7 +24,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <LenisProvider>
+        <body
+          className={cn(
+            "font-inter mx-auto w-full max-w-[1440px] bg-gray-950 text-white",
+            inter.variable,
+          )}
+        >
+          <TopNav />
+          {children}
+        </body>
+      </LenisProvider>
     </html>
   );
 }
