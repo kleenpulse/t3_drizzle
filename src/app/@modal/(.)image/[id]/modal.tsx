@@ -26,7 +26,7 @@ export default function PortalModal({
     <dialog
       ref={dialogRef}
       onClose={onDismiss}
-      className="gridx relative h-screen w-full  place-items-start bg-black/50 text-white"
+      className="gridx relative min-h-screen w-full  place-items-start bg-black/50 text-white"
     >
       {children}
       <button onClick={onDismiss} className="absolute left-10 top-6">

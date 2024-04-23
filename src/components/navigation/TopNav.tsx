@@ -12,7 +12,7 @@ const TopNav = () => {
   const router = useRouter();
 
   return (
-    <nav className="flex justify-between border-b border-gray-900 px-4 py-4 font-inter text-xl font-bold md:px-8">
+    <nav className="font-inter flex justify-between border-b border-gray-900 px-4 py-4 text-xl font-bold md:px-8">
       <Link href={"/"} className="">
         Gallery
       </Link>
@@ -31,7 +31,7 @@ const TopNav = () => {
                 toast(
                   <div className="flex items-center gap-x-2 text-white">
                     <LoadingSpinner />
-                    <span className="w-fit bg-gradient-to-r from-white via-blue-200 to-blue-500 bg-clip-text  font-inter text-lg font-medium uppercase text-transparent lg:text-xl">
+                    <span className="font-inter w-fit bg-gradient-to-r from-white via-blue-200 to-blue-500  bg-clip-text text-lg font-medium uppercase text-transparent lg:text-xl">
                       Uploading...
                     </span>
                   </div>,
@@ -48,6 +48,13 @@ const TopNav = () => {
                   id: "upload-complete",
                 });
                 router.refresh();
+              }}
+              onUploadError={() => {
+                toast.dismiss("upload-start");
+                toast.error("Ratelimited. Upload Failed!", {
+                  duration: 2000,
+                  id: "upload-error",
+                });
               }}
             />
             <UserButton />
