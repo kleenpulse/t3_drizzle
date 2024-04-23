@@ -75,7 +75,7 @@
   }
 }
 dialog {
-  max-width: 100vw;
+  max-width: 1440px !important;
   max-height: 100vh;
 }
 

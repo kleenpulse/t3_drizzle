@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { clerkClient } from "@clerk/nextjs/server";
 import { cn } from "~/lib/utils";
-import { getImage } from "~/server/queries";
+import { deleteImage, getImage } from "~/server/queries";
 
 // import {Modal} from './modal'
 export default async function FullImage(props: {
@@ -15,7 +15,12 @@ export default async function FullImage(props: {
 
   if (!image.url) return <p>Image not found</p>;
   return (
-    <div className={cn(" flex min-w-0 items-start gap-5 px-4 ", className)}>
+    <div
+      className={cn(
+        " flex min-w-0 flex-col items-center gap-5 px-4 min-[500px]:flex-row min-[500px]:items-start ",
+        className,
+      )}
+    >
       <div className="flex flex-shrink">
         <img
           src={image.url}
@@ -23,7 +28,7 @@ export default async function FullImage(props: {
           className="shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]x flex-shrink rounded-xl object-contain"
         />
       </div>
-      <div className="lg:w-54 sticky top-5 flex w-48 flex-col gap-y-2 rounded-xl bg-black/80 px-4 py-2">
+      <div className="lg:w-54 sticky top-5 flex w-full flex-shrink-0 flex-col gap-y-2 rounded-xl bg-black/80 px-4 py-2 min-[500px]:w-48">
         <p className="w-fit bg-gradient-to-r from-white via-blue-200  to-blue-500 bg-clip-text font-inter font-medium uppercase text-transparent">
           {image.name}
         </p>
@@ -38,6 +43,22 @@ export default async function FullImage(props: {
           <p className="w-fit font-inter text-sm font-extralight  text-white">
             {image.createdAt.toDateString()}
           </p>
+        </div>
+        <div className="flex w-full justify-start">
+          <form
+            action={async () => {
+              "use server";
+              await deleteImage(image.id);
+            }}
+            className="w-full"
+          >
+            <button
+              type="submit"
+              className="flex  w-full justify-center rounded-sm border border-red-500 bg-red-500/20 px-2 py-1 text-sm font-medium text-red-500 transition-all duration-300 hover:bg-red-500/30 active:scale-95"
+            >
+              <span>Delete</span>{" "}
+            </button>
+          </form>
         </div>
       </div>
     </div>

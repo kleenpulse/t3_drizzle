@@ -31,7 +31,9 @@ const TopNav = () => {
                 toast(
                   <div className="flex items-center gap-x-2 text-white">
                     <LoadingSpinner />
-                    <span className="text-lg lg:text-xl">Uploading...</span>
+                    <span className="w-fit bg-gradient-to-r from-white via-blue-200 to-blue-500 bg-clip-text  font-inter text-lg font-medium uppercase text-transparent lg:text-xl">
+                      Uploading...
+                    </span>
                   </div>,
                   {
                     duration: 100000,
