@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { Suspense } from "react";
 import { toast } from "sonner";
 import { UploadButton } from "~/lib/utils";
+import { LoadingSpinner } from "../miscellaneous/LoadingSpinner";
 
 const TopNav = () => {
   const router = useRouter();
@@ -27,10 +28,16 @@ const TopNav = () => {
             <UploadButton
               endpoint="imageUploader"
               onUploadBegin={() => {
-                toast("Uploading...", {
-                  duration: 100000,
-                  id: "upload-start",
-                });
+                toast(
+                  <div className="flex items-center gap-x-2 text-white">
+                    <LoadingSpinner />
+                    <span className="text-lg lg:text-xl">Uploading...</span>
+                  </div>,
+                  {
+                    duration: 100000,
+                    id: "upload-start",
+                  },
+                );
               }}
               onClientUploadComplete={() => {
                 toast.dismiss("upload-start");
