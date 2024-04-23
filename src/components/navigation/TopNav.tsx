@@ -51,7 +51,7 @@ const TopNav = () => {
               }}
               onUploadError={() => {
                 toast.dismiss("upload-start");
-                toast.error("Ratelimited. Upload Failed!", {
+                toast.error("Upload Failed!", {
                   duration: 2000,
                   id: "upload-error",
                 });

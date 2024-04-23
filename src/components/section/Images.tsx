@@ -1,3 +1,4 @@
+import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "~/lib/utils";
@@ -5,6 +6,7 @@ import { getMyImages } from "~/server/queries";
 
 const Images = async () => {
   const images = await getMyImages();
+  const user = auth();
 
   return (
     <div className="flex w-full flex-wrap justify-center gap-5">
@@ -14,7 +16,7 @@ const Images = async () => {
           key={image.id}
         >
           <Link
-            href={`/image/${image.id}`}
+            href={image.userId === user.userId ? `/image/${image.id}` : ""}
             className="h-full w-full overflow-hidden rounded-xl "
           >
             <Image
@@ -25,7 +27,7 @@ const Images = async () => {
               className=" h-full w-full rounded-xl object-cover transition-all duration-1000 group-hover/img:scale-125 group-hover/img:duration-100"
             />
           </Link>
-          <p className="w-fit bg-gradient-to-r from-white via-blue-200 to-blue-500  bg-clip-text font-inter font-medium text-transparent transition-all duration-700 group-hover/img:brightness-150 group-hover/img:duration-100">
+          <p className="font-inter w-fit bg-gradient-to-r from-white via-blue-200  to-blue-500 bg-clip-text font-medium text-transparent transition-all duration-700 group-hover/img:brightness-150 group-hover/img:duration-100">
             {image.name}
           </p>
         </div>
@@ -38,7 +40,7 @@ const Images = async () => {
             : "pointer-events-none absolute opacity-0",
         )}
       >
-        <p className="w-fit bg-gradient-to-r from-white via-blue-200 to-blue-500 bg-clip-text py-5 font-inter text-2xl font-medium uppercase text-transparent md:text-[5vw] 2xl:text-8xl">
+        <p className="font-inter w-fit bg-gradient-to-r from-white via-blue-200 to-blue-500 bg-clip-text py-5 text-2xl font-medium uppercase text-transparent md:text-[5vw] 2xl:text-8xl">
           No images yet,Upload!
         </p>
       </div>
