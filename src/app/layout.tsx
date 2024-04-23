@@ -11,6 +11,7 @@ import LoadingScreen from "~/components/welcome/LoadingScreen";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import { Toaster } from "~/components/ui/sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -38,7 +39,7 @@ export default function RootLayout({
         <LenisProvider>
           <body
             className={cn(
-              "mx-auto w-full max-w-[1440px] bg-gray-950 font-inter text-white",
+              "dark mx-auto w-full max-w-[1440px] bg-gray-950 font-inter text-white",
             )}
           >
             <Suspense fallback={<LoadingScreen />}>
@@ -48,6 +49,7 @@ export default function RootLayout({
               </section>
               {modal}
               <div id="modal-root" />
+              <Toaster />
             </Suspense>
           </body>
         </LenisProvider>
