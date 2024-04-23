@@ -9,7 +9,7 @@ export default async function PhotoPage({
   if (!photoId) return <p>Image not found</p>;
   return (
     <Suspense fallback={<p className="text-5xl text-white">Loading...</p>}>
-      <FullImage photoId={photoId} />
+      <FullImage photoId={photoId} className="py-10" />
     </Suspense>
   );
 }

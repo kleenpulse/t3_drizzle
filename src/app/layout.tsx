@@ -33,18 +33,19 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" className={inter.variable}>
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <LenisProvider>
           <body
             className={cn(
               "mx-auto w-full max-w-[1440px] bg-gray-950 font-inter text-white",
-              inter.variable,
             )}
           >
-            <TopNav />
             <Suspense fallback={<LoadingScreen />}>
-              {children}
+              <section className="grid min-h-screen grid-rows-[auto,1fr] ">
+                <TopNav />
+                {children}
+              </section>
               {modal}
               <div id="modal-root" />
             </Suspense>

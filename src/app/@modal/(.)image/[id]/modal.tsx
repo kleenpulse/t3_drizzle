@@ -26,10 +26,12 @@ export default function PortalModal({
     <dialog
       ref={dialogRef}
       onClose={onDismiss}
-      className="grid h-screen w-screen place-items-center bg-black/10"
+      className="gridx relative h-screen w-full  place-items-start bg-black/50 text-white"
     >
       {children}
-      <button onClick={onDismiss}>Close</button>
+      <button onClick={onDismiss} className="absolute left-10 top-6">
+        Close
+      </button>
     </dialog>,
     document.getElementById("modal-root")!,
   );

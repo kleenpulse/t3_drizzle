@@ -2,7 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import {
   generateUploadButton,
-  generateUploadDropzone,
+  generateUploadDropzone
 } from "@uploadthing/react";
 
 import type { OurFileRouter } from "~/app/api/uploadthing/core";
