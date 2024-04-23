@@ -1,8 +1,9 @@
 "use client";
 
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import { UploadButton } from "~/lib/utils";
 
 const TopNav = () => {
@@ -10,10 +11,14 @@ const TopNav = () => {
 
   return (
     <nav className="flex justify-between border-b border-gray-900 px-4 py-4 font-inter text-xl font-bold md:px-8">
-      <h2 className="">Gallery</h2>
+      <Link href={"/"} className="">
+        Gallery
+      </Link>
       <div>
         <SignedOut>
-          <SignInButton />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SignInButton />
+          </Suspense>
         </SignedOut>
 
         <SignedIn>

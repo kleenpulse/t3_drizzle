@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "~/lib/utils";
 import { getMyImages } from "~/server/queries";
 
@@ -12,14 +13,16 @@ const Images = async () => {
           className="relative flex aspect-square w-80 flex-col gap-2 p-2"
           key={image.id}
         >
-          <Image
-            width={500}
-            height={500}
-            alt="mock"
-            src={image.url}
-            className="h-full w-full rounded-xl object-cover "
-          />
-          <p className="w-fit bg-gradient-to-r from-white via-blue-200 to-blue-500  bg-clip-text font-inter font-medium text-transparent">
+          <Link href={`/image/${image.id}`} className="h-full w-full">
+            <Image
+              width={500}
+              height={500}
+              alt="mock"
+              src={image.url}
+              className="h-full w-full rounded-xl object-cover "
+            />
+          </Link>
+          <p className="w-fit bg-gradient-to-r from-white via-blue-200 to-blue-500  bg-clip-text font-inter font-medium text-transparent hover:brightness-150">
             {image.name}
           </p>
         </div>

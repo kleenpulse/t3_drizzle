@@ -13,3 +13,7 @@ export const UploadDropzone = generateUploadDropzone<OurFileRouter>();
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const generateId = () => {
+  return Math.random().toString(36).substring(2, 15);
+};
