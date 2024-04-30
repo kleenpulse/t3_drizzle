@@ -9,27 +9,29 @@ const Images = async () => {
   const user = auth();
 
   return (
-    <div className="flex w-full flex-wrap justify-center gap-5">
+    <div className=" max-h-full w-full columns-1 [column-gap:40px] sm:columns-2 md:columns-3 xl:columns-4 ">
       {images.map((image) => (
         <div
-          className="group/img relative  flex w-80 flex-col  gap-2  p-2"
+          className="group/link relative  flex w-full flex-col  gap-2  p-2"
           key={image.id}
         >
+          <div className="group/img relative  w-full overflow-hidden">
+            <Image
+              width={1000}
+              height={1000}
+              alt="mock"
+              src={image.url}
+              className=" h-full max-w-full rounded-xl object-cover transition-all duration-1000 group-hover/img:scale-125 group-hover/img:duration-100"
+            />
+          </div>
           <Link
             href={image.userId === user.userId ? `/image/${image.id}` : ""}
             className="h-full w-full overflow-hidden rounded-xl "
           >
-            <Image
-              width={500}
-              height={500}
-              alt="mock"
-              src={image.url}
-              className=" h-full w-full rounded-xl object-cover transition-all duration-1000 group-hover/img:scale-125 group-hover/img:duration-100"
-            />
+            <p className="font-inter w-fit bg-gradient-to-r from-white via-blue-200  to-blue-500 bg-clip-text font-medium text-transparent transition-all duration-700 group-hover/link:brightness-150 group-hover/link:duration-100">
+              {image.name}
+            </p>
           </Link>
-          <p className="font-inter w-fit bg-gradient-to-r from-white via-blue-200  to-blue-500 bg-clip-text font-medium text-transparent transition-all duration-700 group-hover/img:brightness-150 group-hover/img:duration-100">
-            {image.name}
-          </p>
         </div>
       ))}
       <div
