@@ -74,10 +74,6 @@
     @apply bg-background text-foreground;
   }
 }
-dialog {
-  max-width: 1440px !important;
-  min-height: 100vh;
-}
 
 ::-webkit-scrollbar {
   width: 0.2px;

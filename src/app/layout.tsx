@@ -27,28 +27,25 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-  modal,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
-      <html lang="en" className={inter.variable}>
+      <html lang="en" className={cn("relative w-full", inter.variable)}>
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <LenisProvider>
           <body
             className={cn(
-              "dark mx-auto w-full max-w-[1440px] bg-gray-950 font-inter text-white",
+              "font-inter dark mx-auto w-full max-w-[1440px] overflow-y-scroll bg-gray-950 text-white",
             )}
           >
             <Suspense fallback={<LoadingScreen />}>
-              <section className="grid min-h-screen grid-rows-[auto,1fr] ">
+              <section className="flex h-full w-full flex-col overflow-y-scroll ">
                 <TopNav />
                 {children}
               </section>
-              {modal}
-              <div id="modal-root" />
+
               <Toaster />
             </Suspense>
           </body>
